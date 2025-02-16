@@ -1,0 +1,61 @@
+/*
+Author:Eunice-Makenzi
+Date:16 FEB 2025
+REG No:BSE-05-0170
+context:Library function
+/*
+
+#include <iostream>
+#include <string>
+#include <ctime>
+
+using namespace std;
+
+int calculateFine(int daysOverdue) {
+    if (daysOverdue <= 7) {
+        return daysOverdue * 20;
+    } else if (daysOverdue <= 14) {
+        return (7 * 20) + (daysOverdue - 7) * 50;
+    } else {
+        return (7 * 20) + (7 * 50) + (daysOverdue - 14) * 100;
+    }
+}
+
+int main() {
+    string bookID;
+    string dueDateStr, returnDateStr;
+    struct tm dueDate = {0}, returnDate = {0};
+
+    // Get user inputs
+    cout << "Enter the book ID: ";
+    cin >> bookID;
+    cout << "Enter the due date (YYYY-MM-DD): ";
+    cin >> dueDateStr;
+    cout << "Enter the return date (YYYY-MM-DD): ";
+    cin >> returnDateStr;
+
+    // Convert input strings to date structures
+    sscanf(dueDateStr.c_str(), "%d-%d-%d", &dueDate.tm_year, &dueDate.tm_mon, &dueDate.tm_mday);
+    sscanf(returnDateStr.c_str(), "%d-%d-%d", &returnDate.tm_year, &returnDate.tm_mon, &returnDate.tm_mday);
+    dueDate.tm_year -= 1900;
+    dueDate.tm_mon -= 1;
+    returnDate.tm_year -= 1900;
+    returnDate.tm_mon -= 1;
+
+    // Calculate days overdue
+    time_t dueDateEpoch = mktime(&dueDate);
+    time_t returnDateEpoch = mktime(&returnDate);
+    int daysOverdue = difftime(returnDateEpoch, dueDateEpoch) / (60 * 60 * 24);
+
+    // Calculate fine
+    int fine = calculateFine(daysOverdue);
+
+    // Display results
+    cout << "Book ID: " << bookID << endl;
+    cout << "Due Date: " << dueDateStr << endl;
+    cout << "Return Date: " << returnDateStr << endl;
+    cout << "Days Overdue: " << daysOverdue << endl;
+    cout << "Fine: Ksh. " << fine << endl;
+
+    return 0;
+}

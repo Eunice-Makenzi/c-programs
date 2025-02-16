@@ -1,0 +1,64 @@
+/*
+Author:Eunice-Makenzi
+Date:16 FEB 2025
+Reg No:BSE-05-0170/2024
+Context:Class in application of encapsulation
+/*
+
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class BankAccount {
+private:
+    string accountHolder;
+    double balance;
+
+public:
+    // Constructor to initialize data members
+    BankAccount(string accHolder, double bal) : accountHolder(accHolder), balance(bal) {}
+
+    // Getter method for accountHolder
+    string getAccountHolder() const {
+        return accountHolder;
+    }
+
+    // Setter method for accountHolder
+    void setAccountHolder(const string &accHolder) {
+        accountHolder = accHolder;
+    }
+
+    // Getter method for balance
+    double getBalance() const {
+        return balance;
+    }
+
+    // Setter method for balance
+    void setBalance(double bal) {
+        balance = bal;
+    }
+
+    // Member function to display account details
+    void display() const {
+        cout << "Account Holder: " << accountHolder << endl;
+        cout << "Balance: $" << balance << endl;
+    }
+};
+
+int main() {
+    // Creating a BankAccount object with given details
+    BankAccount myAccount("Kenzie Lepar", 1000.0);
+
+    // Displaying account details
+    myAccount.display();
+
+    // Updating accountHolder and balance
+    myAccount.setAccountHolder("Tekuh Elle");
+    myAccount.setBalance(2000.0);
+
+    // Displaying updated account details
+    myAccount.display();
+
+    return 0;
+}

@@ -1,0 +1,30 @@
+/*
+Author:Eunice-Makenzi
+Date:16 FEB 2025
+Reg No:BSE-05-0170/2024
+Context:Volume of a cylinder
+/*
+
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+double calculateVolume(double radius, double height) {
+    const double PI = 3.141592653589793;
+    return PI * pow(radius, 2) * height;
+}
+
+int main() {
+    double radius, height;
+
+    cout << "Enter the radius of the cylinder: ";
+    cin >> radius;
+    cout << "Enter the height of the cylinder: ";
+    cin >> height;
+
+    double volume = calculateVolume(radius, height);
+    cout << "The volume of the cylinder is: " << volume << endl;
+
+    return 0;
+}
