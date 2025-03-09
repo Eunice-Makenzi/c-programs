@@ -1,0 +1,87 @@
+Author:Eunice Makenzi
+Reg No:BSE-05-0170/2024
+Date:9 Mar 2025
+Context:Creating a sipmle Library Management
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+// Base class: Person
+class Person {
+protected:
+    string name; // Protected data member
+
+public:
+    // Constructor to initialize name
+    Person(string name) {
+        this->name = name;
+    }
+
+    // Function to set the name
+    void setName(string name) {
+        this->name = name;
+    }
+
+    // Function to get the name
+    string getName() {
+        return name;
+    }
+};
+
+// Derived class: LibraryMember
+class LibraryMember : public Person {
+private:
+    int memberID;       // Private data member
+    int booksBorrowed;  // Private data member
+
+public:
+    // Constructor to initialize name, memberID, and booksBorrowed
+    LibraryMember(string name, int memberID, int booksBorrowed)
+        : Person(name) { // Call the base class constructor
+        this->memberID = memberID;
+        this->booksBorrowed = booksBorrowed;
+    }
+
+    // Function to get the member ID
+    int getMemberID() {
+        return memberID;
+    }
+
+    // Function to get the number of books borrowed
+    int getBooksBorrowed() {
+        return booksBorrowed;
+    }
+};
+
+// Derived class: PremiumMember
+class PremiumMember : public LibraryMember {
+private:
+    double membershipFee; // Private data member
+
+public:
+    // Constructor to initialize name, memberID, booksBorrowed, and membershipFee
+    PremiumMember(string name, int memberID, int booksBorrowed, double membershipFee)
+        : LibraryMember(name, memberID, booksBorrowed) { // Call the base class constructor
+        this->membershipFee = membershipFee;
+    }
+
+    // Function to get the membership fee
+    double getMembershipFee() {
+        return membershipFee;
+    }
+};
+
+int main() {
+    // Create a PremiumMember object
+    PremiumMember premiumMember("Kenzie Leparmorijo", 456, 10, 150.50);
+
+    // Display premium member details
+    cout << "Premium Member Details:" << endl;
+    cout << "Name: " << premiumMember.getName() << endl;
+    cout << "Member ID: " << premiumMember.getMemberID() << endl;
+    cout << "Books Borrowed: " << premiumMember.getBooksBorrowed() << endl;
+    cout << "Membership Fee: $" << premiumMember.getMembershipFee() << endl;
+
+    return 0;
+}

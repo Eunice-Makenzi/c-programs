@@ -1,0 +1,81 @@
+Author:Eunice Makenzi
+Reg No:BSE-05-0170/2024
+Date:9 Mar 2025
+Context:Creating a simple bank management
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+// Base class: AccountHolder
+class AccountHolder {
+protected:
+    string name; // Protected data member
+
+public:
+    // Function to set the name
+    void setName(string name) {
+        this->name = name;
+    }
+
+    // Function to get the name
+    string getName() {
+        return name;
+    }
+};
+
+// Derived class: BankAccount
+class BankAccount : public AccountHolder {
+private:
+    int accountNumber;    // Private data member
+    double balance;       // Private data member
+
+public:
+    // Constructor to initialize name, accountNumber, and balance
+    BankAccount(string name, int accountNumber, double balance) {
+        setName(name);            // Call the base class function
+        this->accountNumber = accountNumber;
+        this->balance = balance;
+    }
+
+    // Function to get the account number
+    int getAccountNumber() {
+        return accountNumber;
+    }
+
+    // Function to get the account balance
+    double getBalance() {
+        return balance;
+    }
+};
+
+// Derived class: SavingsAccount
+class SavingsAccount : public BankAccount {
+private:
+    double interestRate; // Private data member
+
+public:
+    // Constructor to initialize name, accountNumber, balance, and interestRate
+    SavingsAccount(string name, int accountNumber, double balance, double interestRate)
+        : BankAccount(name, accountNumber, balance) {
+        this->interestRate = interestRate;
+    }
+
+    // Function to get the interest rate
+    double getInterestRate() {
+        return interestRate;
+    }
+};
+
+int main() {
+    // Create a SavingsAccount object
+    SavingsAccount account("Kenzie Leparmorijo", 12345, 10000.0, 3.5);
+
+    // Display account details
+    cout << "Account Holder: " << account.getName() << endl;
+    cout << "Account Number: " << account.getAccountNumber() << endl;
+    cout << "Balance: $" << account.getBalance() << endl;
+    cout << "Interest Rate: " << account.getInterestRate() << "%" << endl;
+
+    return 0;
+}
